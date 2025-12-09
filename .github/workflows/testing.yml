@@ -1,0 +1,33 @@
+name: Test Stuff
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test sm-action 3.0.0-beta.2
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Test sm-action 3.0.0-beta.2
+        id: secrets
+        uses: bitwarden/sm-action@v3.0.0-beta.2
+        with:
+          access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN }}
+          api_url: "https://api.qa.bitwarden.pw"
+          identity_url: "https://identity.qa.bitwarden.pw"
+          secrets: |
+            b4f37a29-a0e0-423e-b283-afbd010ca70a > SECRET_ONE
+            671c2dff-44c0-458b-831f-afbd01550fe2 > SECRET_TWO
+
+      - name: Test env vars are set
+        run: |
+          echo "SECRET_ONE=$SECRET_ONE"
+          echo "SECRET_TWO=$SECRET_TWO"
+          echo
+
+          echo "$SECRET_ONE" | sed 's/./& /g'
+          echo "$SECRET_TWO" | sed 's/./& /g'
+          echo
