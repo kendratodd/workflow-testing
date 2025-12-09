@@ -28,6 +28,6 @@ jobs:
           Write-Host "SECRET_TWO=$SECRET_TWO"
           Write-Host
 
-          Write-Host "$SECRET_ONE" -join ' ' -split ''
-          Write-Host "$SECRET_TWO" -join ' ' -split ''
+          Write-Host $Env:SECRET_ONE -join ' ' -split ''
+          Write-Host $Env:SECRET_TWO -join ' ' -split ''
           Write-Host
