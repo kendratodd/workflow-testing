@@ -28,6 +28,6 @@ jobs:
           Write-Host "SECRET_TWO=$SECRET_TWO"
           Write-Host
 
-          Write-Host $Env:SECRET_ONE
-          Write-Host $Env:SECRET_TWO
+          Get-Item Env:SECRET_ONE
+          Get-Item Env:SECRET_TWO
           Write-Host
