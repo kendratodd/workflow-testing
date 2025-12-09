@@ -19,8 +19,8 @@ jobs:
           api_url: "https://api.qa.bitwarden.pw"
           identity_url: "https://identity.qa.bitwarden.pw"
           secrets: |
-            0bffbb23-cd39-49f5-8b54-b34d0189810e > SECRET_ONE
-            a6d3aa16-b6bc-4af7-9345-b3a8013a4ba0 > SECRET_TWO
+            0bffbb23-cd39-49f5-8b54-b34d0189810e >> SECRET_ONE
+            a6d3aa16-b6bc-4af7-9345-b3a8013a4ba0 >> SECRET_TWO
 
       - name: Test env vars are set
         run: |
@@ -28,6 +28,6 @@ jobs:
           Write-Host "SECRET_TWO=$SECRET_TWO"
           Write-Host
 
-          Get-Item Env:SECRET_ONE
-          Get-Item Env:SECRET_TWO
+          Write-Output $env.SECRET_ONE
+          Write-Output $env.SECRET_TWO
           Write-Host
