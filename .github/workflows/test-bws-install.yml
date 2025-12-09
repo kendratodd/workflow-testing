@@ -24,10 +24,10 @@ jobs:
 
       - name: Test env vars are set
         run: |
-          echo "SECRET_ONE=$SECRET_ONE"
-          echo "SECRET_TWO=$SECRET_TWO"
-          echo
+          Write-Host "SECRET_ONE=$SECRET_ONE"
+          Write-Host "SECRET_TWO=$SECRET_TWO"
+          Write-Host
 
-          echo "$SECRET_ONE" | sed 's/./& /g'
-          echo "$SECRET_TWO" | sed 's/./& /g'
-          echo
+          Write-Host "$SECRET_ONE" | sed 's/./& /g'
+          Write-Host "$SECRET_TWO" | sed 's/./& /g'
+          Write-Host
