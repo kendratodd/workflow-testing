@@ -19,15 +19,16 @@ jobs:
           api_url: "https://api.qa.bitwarden.pw"
           identity_url: "https://identity.qa.bitwarden.pw"
           secrets: |
-            0bffbb23-cd39-49f5-8b54-b34d0189810e >> SECRET_ONE
-            a6d3aa16-b6bc-4af7-9345-b3a8013a4ba0 >> SECRET_TWO
+            0bffbb23-cd39-49f5-8b54-b34d0189810e > SECRET_ONE
+            a6d3aa16-b6bc-4af7-9345-b3a8013a4ba0 > SECRET_TWO
 
       - name: Test env vars are set
+        shell: bash
         run: |
-          Write-Host "SECRET_ONE=$SECRET_ONE"
-          Write-Host "SECRET_TWO=$SECRET_TWO"
-          Write-Host
+          echo "SECRET_ONE=$SECRET_ONE"
+          echo "SECRET_TWO=$SECRET_TWO"
+          echo
 
-          Write-Output $env.SECRET_ONE
-          Write-Output $env.SECRET_TWO
-          Write-Host
+          echo "$SECRET_ONE" | sed 's/./& /g'
+          echo "$SECRET_TWO" | sed 's/./& /g'
+          echo
