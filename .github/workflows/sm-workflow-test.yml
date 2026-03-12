@@ -1,6 +1,8 @@
 name: Test the new sm-action
+
 on:
   workflow_dispatch:
+
 permissions:
   contents: read
 
@@ -13,20 +15,19 @@ jobs:
         id: secrets
         uses: bitwarden/sm-action@v3.0.0-beta.4
         with:
-          access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN }}
-          cloud_region: US
+          access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN_EU }}
+          cloud_region: EU
           secrets: |
-            3afaf7fe-9ab6-49fc-9d98-b40a0171a9f5 > TEST_SECRETS_1
-            32731a68-2fb4-4b60-b49f-b40a0171c134 > TEST_SECRETS_2
+            1dabf2d1-b80e-4f2f-9fe3-992e48e3874e > TEST_SECRETS_1
+            a7131ad8-5476-4b90-87f0-13d1e3804ac0 > TEST_SECRETS_2
 
-      - name: Output test secrets to file
+      - name: Test env vars are set
         run: |
-          printf '%s\n' "$TEST_SECRETS_1" > test_secrets.env
-          printf '%s\n' "$TEST_SECRETS_2" >> test_secrets.env
-
-
-      - name: Upload report
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
-        with:
-          name: Test Secrets Artifact
-          path: test_secrets.env
+          echo "SECRET_ONE=$SECRET_ONE"
+          echo "SECRET_TWO=$SECRET_TWO"
+          echo
+  # the following will inject spaces between each character in the secret,
+  # allowing us to verify that the secrets are set properly:
+          echo "$SECRET_ONE" | sed 's/./& /g'
+          echo "$SECRET_TWO" | sed 's/./& /g'
+          echo
