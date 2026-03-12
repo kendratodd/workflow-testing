@@ -1,0 +1,32 @@
+name: Test the new sm-action
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test Rust sm-action
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Test sm-action v3.0.0-beta.4
+        id: secrets
+        uses: bitwarden/sm-action@v3.0.0-beta.4
+        with:
+          access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN }}
+          cloud_region: us
+          secrets: |
+            3afaf7fe-9ab6-49fc-9d98-b40a0171a9f5 > TEST_SECRETS_1
+            32731a68-2fb4-4b60-b49f-b40a0171c134 > TEST_SECRETS_2
+
+      - name: Output test secrets to file
+        run: |
+          printf '%s\n' "$TEST_SECRETS_1" > test_secrets.env
+          printf '%s\n' "$TEST_SECRETS_2" >> test_secrets.env
+
+
+      - name: Upload report
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: Test Secrets Artifact
+          path: test_secrets.env
