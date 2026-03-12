@@ -18,8 +18,8 @@ jobs:
           access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN_EU }}
           cloud_region: EU
           secrets: |
-            1dabf2d1-b80e-4f2f-9fe3-992e48e3874e > TEST_SECRETS_1
-            a7131ad8-5476-4b90-87f0-13d1e3804ac0 > TEST_SECRETS_2
+            1dabf2d1-b80e-4f2f-9fe3-992e48e3874e > SECRETS_ONE
+            a7131ad8-5476-4b90-87f0-13d1e3804ac0 > SECRETS_TWO
 
       - name: Test env vars are set
         run: |
