@@ -14,10 +14,10 @@ jobs:
         uses: bitwarden/sm-action@v3.0.0-beta.4
         with:
           access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN_EU }}
-          cloud_region: EU
+          cloud_region: eu
           secrets: |
-            3afaf7fe-9ab6-49fc-9d98-b40a0171a9f5 > TEST_SECRETS_1
-            32731a68-2fb4-4b60-b49f-b40a0171c134 > TEST_SECRETS_2
+            1dabf2d1-b80e-4f2f-9fe3-992e48e3874e > TEST_SECRETS_1
+            a7131ad8-5476-4b90-87f0-13d1e3804ac0 > TEST_SECRETS_2
 
       - name: Output test secrets to file
         run: |
