@@ -28,8 +28,8 @@ jobs:
           echo "SECRETS_TWO=$SECRET_TWO"
           echo
 
-          echo "$SECRET_ONE" | sed 's/./& /g'
-          echo "$SECRET_TWO" | sed 's/./& /g'
+          echo "$SECRETS_ONE" | sed 's/./& /g'
+          echo "$SECRETS_TWO" | sed 's/./& /g'
           echo
 
       - name: Output test secrets to file
