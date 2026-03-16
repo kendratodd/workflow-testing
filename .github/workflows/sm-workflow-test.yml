@@ -24,11 +24,10 @@ jobs:
 
       - name: Test env vars are set
         run: |
-          echo "SECRET_ONE=$SECRET_ONE"
-          echo "SECRET_TWO=$SECRET_TWO"
+          echo "SECRETS_ONE=$SECRET_ONE"
+          echo "SECRETS_TWO=$SECRET_TWO"
           echo
-          # the following will inject spaces between each character in the secret,
-          # allowing us to verify that the secrets are set properly:
+
           echo "$SECRET_ONE" | sed 's/./& /g'
           echo "$SECRET_TWO" | sed 's/./& /g'
           echo
