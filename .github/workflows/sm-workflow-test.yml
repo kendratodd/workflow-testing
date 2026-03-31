@@ -24,10 +24,7 @@ jobs:
       - name: Test env vars are set
         run: |
           echo "SECRET_MULTILINE=$SECRET_ONE"
-          echo "SECRETS_TWO=$SECRET_TWO"
           echo
-
-          echo "$SECRET_MULTILINE" | sed 's/./& /g'
           echo
 
       - name: Print secret value line-by-line
