@@ -11,9 +11,9 @@ jobs:
     name: Test Rust sm-action
     runs-on: ubuntu-24.04
     steps:
-      - name: Test sm-action v3.0.0-beta.5
+      - name: Test sm-action v3.0.0-beta.4
         id: secrets
-        uses: bitwarden/sm-action@v3.0.0-beta.5
+        uses: bitwarden/sm-action@v3.0.0-beta.4
         with:
           access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN }}
           base_url: https://vault.qa.bitwarden.pw
@@ -28,7 +28,6 @@ jobs:
           echo
 
           echo "$SECRET_MULTILINE" | sed 's/./& /g'
-          echo "$SECRETS_TWO" | sed 's/./& /g'
           echo
 
       - name: Print secret value line-by-line
