@@ -36,12 +36,12 @@ jobs:
         id: set-env-false # a step 'id' must be set in order to access the secrets with set_env=false
         uses: bitwarden/sm-action@82ce8bd8c92852c75d2115a6b82e43f0deb3354c
         with:
-          access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN_US }}
-          cloud_region: us
-          set_env: false # we have told the sm-action to not set the secrets as env vars
+          access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN_EU }}
+          cloud_region: eu
+          set_env: true # we have told the sm-action to not set the secrets as env vars
           secrets: |
-            3afaf7fe-9ab6-49fc-9d98-b40a0171a9f5 > SECRET_NO_ENV_ONE
-            32731a68-2fb4-4b60-b49f-b40a0171c134 > SECRET_NO_ENV_TWO
+            9cc7ed0e-1ca1-453a-8f39-b46c0050e963 > SECRET_NO_ENV_ONE
+            a1790332-a76f-48e0-a0ec-b46c0050f55e > SECRET_NO_ENV_TWO
 
       - name: Ensure that `set_env=false` works correctly
         run: |
