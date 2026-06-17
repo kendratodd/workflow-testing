@@ -19,8 +19,8 @@ jobs:
           api_url: "https://api.qa.bitwarden.pw"
           identity_url: "https://identity.qa.bitwarden.pw"
           secrets: |
-            0bffbb23-cd39-49f5-8b54-b34d0189810e > SECRET_ONE
-            a6d3aa16-b6bc-4af7-9345-b3a8013a4ba0 > SECRET_TWO
+            30f46bdd-b418-492b-8974-b46c0001b06c > SECRET_ONE
+            3e3b7188-0a57-42c2-a68b-b46c0001b7fe > SECRET_TWO
 
       - name: Test env vars are set
         shell: bash
