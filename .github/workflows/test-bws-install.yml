@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Test sm-action 3.0.0-beta.2
         id: secrets
-        uses: bitwarden/sm-action@v3.0.0-beta.2
+        uses: bitwarden/sm-action@82ce8bd8c92852c75d2115a6b82e43f0deb3354c
         with:
           access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN }}
           api_url: "https://api.qa.bitwarden.pw"
