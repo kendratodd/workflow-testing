@@ -16,8 +16,7 @@ jobs:
         uses: bitwarden/sm-action@82ce8bd8c92852c75d2115a6b82e43f0deb3354c
         with:
           access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN }}
-          api_url: "https://api.qa.bitwarden.pw"
-          identity_url: "https://identity.qa.bitwarden.pw"
+          base_url: https://vault.qa.bitwarden.pw
           secrets: |
             30f46bdd-b418-492b-8974-b46c0001b06c > SECRET_ONE
             3e3b7188-0a57-42c2-a68b-b46c0001b7fe > SECRET_TWO
@@ -31,4 +30,30 @@ jobs:
 
           echo "$SECRET_ONE" | sed 's/./& /g'
           echo "$SECRET_TWO" | sed 's/./& /g'
+          echo
+
+      - name: Test `set_env=false`
+        id: set-env-false # a step 'id' must be set in order to access the secrets with set_env=false
+        uses: bitwarden/sm-action@82ce8bd8c92852c75d2115a6b82e43f0deb3354c
+        with:
+          access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN_US }}
+          cloud_region: us
+          set_env: false # we have told the sm-action to not set the secrets as env vars
+          secrets: |
+            3afaf7fe-9ab6-49fc-9d98-b40a0171a9f5 > SECRET_NO_ENV_ONE
+            32731a68-2fb4-4b60-b49f-b40a0171c134 > SECRET_NO_ENV_TWO
+
+      - name: Ensure that `set_env=false` works correctly
+        run: |
+          echo set_env is false, so secrets should not be in env:
+          if [ -n "$SECRET_NO_ENV_ONE" ] || [ -n "$SECRET_NO_ENV_TWO" ]; then
+            echo "Secrets found in environment variables, but set_env is false" >&2
+            exit 1
+          else
+            echo "No secrets found in environment variables, as expected"
+          fi
+          echo
+          echo printing unmasked secrets with spaces between each character from GITHUB_OUTPUT:
+          echo "${{ steps.set-env-false.outputs.SECRET_NO_ENV_ONE }}" | sed 's/./& /g'
+          echo "${{ steps.set-env-false.outputs.SECRET_NO_ENV_TWO }}" | sed 's/./& /g'
           echo
