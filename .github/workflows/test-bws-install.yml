@@ -38,7 +38,7 @@ jobs:
         with:
           access_token: ${{ secrets.TEST_SM_ACCESS_TOKEN_EU }}
           cloud_region: eu
-          set_env: true # we have told the sm-action to not set the secrets as env vars
+          set_env: false # we have told the sm-action to not set the secrets as env vars
           secrets: |
             9cc7ed0e-1ca1-453a-8f39-b46c0050e963 > SECRET_NO_ENV_ONE
             a1790332-a76f-48e0-a0ec-b46c0050f55e > SECRET_NO_ENV_TWO
